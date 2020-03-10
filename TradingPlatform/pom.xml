@@ -3,6 +3,8 @@
   <groupId>com.fdmgroup.tradingplatform</groupId>
   <artifactId>TradingPlatform</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <name>com.fdmgroup.tradingplatform Trading Platform Project</name>
+  <url>http://maven.apache.org</url>
   <build>
 		<finalName>com.fdmgroup.tradingplatform</finalName>
 		<plugins>
@@ -32,12 +34,6 @@
 		</plugins>
 	</build>
 <dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jsp-api</artifactId>
@@ -120,6 +116,14 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
 		</dependency>
-	</dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
 
+</dependencies>
+
+	<packaging>war</packaging>
 </project>

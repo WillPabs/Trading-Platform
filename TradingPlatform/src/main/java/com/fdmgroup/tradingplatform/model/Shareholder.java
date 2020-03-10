@@ -2,13 +2,14 @@ package com.fdmgroup.tradingplatform.model;
 
 import java.util.List;
 
-public class Shareholder {
+public class Shareholder implements User{
 
 	private int shareholderID;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String password;
+	private String confirmPassword;
 	private String SSN;
 	private double balance;
 	private double investing;
@@ -24,10 +25,18 @@ public class Shareholder {
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
-		SSN = sSN;
+		this.SSN = sSN;
 		this.balance = balance;
 		this.investing = investing;
 		this.trades = trades;
+	}
+	
+	public Shareholder(String firstName, String lastName, String email, String password, String ssn) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.SSN = ssn;
 	}
 
 
@@ -70,6 +79,14 @@ public class Shareholder {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
 
 	public String getSSN() {
 		return SSN;
@@ -104,11 +121,13 @@ public class Shareholder {
 	}
 	
 	public Trade buyShare(int shares) {
-		
+		Trade trade = new Trade();
+		return trade;
 	}
 	
 	public Trade sellShare(int shares) {
-		
+		Trade trade = new Trade();
+		return trade;		
 	}
 
 	@Override

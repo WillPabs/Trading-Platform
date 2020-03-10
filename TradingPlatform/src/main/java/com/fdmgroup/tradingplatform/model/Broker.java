@@ -1,15 +1,13 @@
 package com.fdmgroup.tradingplatform.model;
 
-public class Broker {
+public class Broker implements User{
 	
 	private int brokerID;
 	private String firstName;
 	private String lastName;
 	private Company company;
 
-	public Broker() {
-		
-	}
+	public Broker() {}
 	
 	public Broker(int brokerID, String firstName, String lastName, Company company) {
 		this.brokerID = brokerID;
@@ -55,5 +53,17 @@ public class Broker {
 	public String toString() {
 		return "Broker [brokerID=" + brokerID + ", firstName=" + firstName + ", lastName=" + lastName + ", company="
 				+ company + "]";
+	}
+
+	@Override
+	public Trade buyShare(int shares) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Trade sellShare(int shares) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
