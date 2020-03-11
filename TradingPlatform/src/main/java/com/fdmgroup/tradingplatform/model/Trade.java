@@ -6,22 +6,20 @@ public class Trade {
 	private Shareholder shareholder;
 	private Broker broker;
 	private Stock stock; 
-	private String time;
-	private String date;
+	private String transactionTime;
 	private double price;
 	private int quantity;
 	
 	public Trade() {}
 	
-	public Trade(int tradeID, Shareholder shareholder, Broker broker, Stock stock, String time, String date,
+	public Trade(int tradeID, Shareholder shareholder, Broker broker, Stock stock, String time,
 			double price, int quantity) {
 		super();
 		this.tradeID = tradeID;
 		this.shareholder = shareholder;
 		this.broker = broker;
 		this.stock = stock;
-		this.time = time;
-		this.date = date;
+		this.transactionTime = time;		
 		this.price = price;
 		this.quantity = quantity;
 	}
@@ -59,19 +57,11 @@ public class Trade {
 	}
 
 	public String getTime() {
-		return time;
+		return transactionTime;
 	}
 
 	public void setTime(String time) {
-		this.time = time;
-	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
+		this.transactionTime = time;
 	}
 
 	public double getPrice() {
@@ -93,7 +83,7 @@ public class Trade {
 	@Override
 	public String toString() {
 		return "Trade [tradeID=" + tradeID + ", shareholder=" + shareholder + ", broker=" + broker + ", stock=" + stock
-				+ ", time=" + time + ", date=" + date + ", price=" + price + ", quantity=" + quantity + "]";
+				+ ", time=" + transactionTime + ", price=" + price + ", quantity=" + quantity + "]";
 	}
 	
 	

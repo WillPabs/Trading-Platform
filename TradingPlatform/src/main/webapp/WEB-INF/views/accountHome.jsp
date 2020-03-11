@@ -14,7 +14,8 @@
 	<div class="page-container">
 		<h2>Successfully Created Account</h2>
 	</div>
-	<p>Name:</p>${shareholder}
+	<p>Account Information:</p>${shareholder}
+	
 
 </body>
 </html>
