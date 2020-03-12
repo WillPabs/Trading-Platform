@@ -13,8 +13,29 @@
 <body>
 	<div class="page-container">
 		<h2>Successfully Created Account</h2>
+			<h4>Account Information:</h4>
+			<table>
+				<tr>
+					<td>Name: ${shareholder.firstName} ${shareholder.lastName} </td>
+				</tr>
+				<tr>
+					<td>Email: ${shareholder.email}</td>
+				</tr>
+				<tr>
+					<td>Password: ${shareholder.password}</td>
+				</tr>
+				<tr>
+					<td>SSN: ${shareholder.SSN}</td>
+				</tr>
+				<tr>
+					<td>Balance: ${shareholder.balance}</td>
+				</tr>
+				<tr>
+					<td>Trades: ${shareholder.trades}</td>
+				</tr>
+			</table>
 	</div>
-	<p>Account Information:</p>${shareholder}
+	
 	
 
 </body>

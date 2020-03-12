@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,6 +28,12 @@ public class HomeController {
 	public String goToRegister(Model model) {
 		model.addAttribute("shareholder", new Shareholder());
 		return "registerUser";
+	}
+	
+	@RequestMapping(value = "/login")
+	public String goToLogin(HttpServletRequest req, Model model) {
+		model.addAttribute("shareholder", new Shareholder());
+		return "loginUser";
 	}
 	
 	@RequestMapping(value = "/createUser", method=RequestMethod.POST)

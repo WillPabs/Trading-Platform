@@ -2,7 +2,7 @@ package com.fdmgroup.tradingplatform.model;
 
 import java.util.List;
 
-public class Shareholder implements User{
+public class Shareholder extends User{
 
 	private int shareholderID;
 	private String firstName;
@@ -120,23 +120,25 @@ public class Shareholder implements User{
 		this.trades = trades;
 	}
 	
-	public Trade buyShare(int shares) {
-		Trade trade = new Trade();
-		return trade;
+	@Override
+	Trade buyShares(int shares) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
-	public Trade sellShare(int shares) {
-		Trade trade = new Trade();
-		return trade;		
+	@Override
+	Trade sellShares(int shares) {
+		// TODO Auto-generated method stub
+		return null;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Shareholder [shareholderID=" + shareholderID + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", email=" + email + ", password=" + password + ", SSN=" + SSN + ", balance=" + balance + ", trades="
 				+ trades + "]";
 	}
-	
+
 	
 	
 }

@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Login Page</title>
 </head>
 <body>
-
+	<h1>User Login</h1>
+	<div class="page-container">
+		
+	</div>
+	
 </body>
 </html>
