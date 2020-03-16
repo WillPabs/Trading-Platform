@@ -8,12 +8,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
 @Table(name = "shareholder")
+@NamedQueries({ @NamedQuery(name = "userFindAll", query = "select s from Shareholder s"),
+				@NamedQuery(name = "findByEmail", query = "select s from Shareholder s where s.email = :email")})
 public class Shareholder extends User{
 
 	@Id

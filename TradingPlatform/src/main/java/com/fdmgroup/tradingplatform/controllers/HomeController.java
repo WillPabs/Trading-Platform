@@ -1,6 +1,7 @@
 package com.fdmgroup.tradingplatform.controllers;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -57,5 +58,32 @@ public class HomeController implements ApplicationContextAware{
 		return "accountHome";
 	}
 	
+	@RequestMapping(value = "/loginUser", method=RequestMethod.POST)
+	public String verifyUserLogin(HttpServletRequest req) {
+		int errorCheck = 0;
+		UserDao userDao = context.getBean("userDao", UserDao.class);
+		
+		
+		String email = (String) req.getParameter("email");
+		String password = (String) req.getParameter("password");
+		
+		Shareholder userFromDB = userDao.findByEmail(email);
+		
+		if(userFromDB == null) {
+			errorCheck = 1;
+			return "loginUser";
+		}
+		
+		String emailCheck = userFromDB.getEmail();
+		String passwordCheck = userFromDB.getPassword();
+			
+		if(email.equals(emailCheck) && password.equals(passwordCheck)) {
+			req.getSession().setAttribute("shareholder", userFromDB);
+			return "accountHome";
+		} else {
+			errorCheck = 1;
+			return "loginUser";
+		} 
+	}
 
 }
