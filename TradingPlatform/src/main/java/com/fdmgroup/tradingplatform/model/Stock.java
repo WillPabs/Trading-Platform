@@ -1,5 +1,7 @@
 package com.fdmgroup.tradingplatform.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,12 +19,16 @@ public class Stock {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "stock_id_gen")
 	@SequenceGenerator(name = "stock_id_gen", sequenceName = "stock_id_gen", allocationSize = 1)
 	private int stockID;
+	
+	@Column(name="ticker")
 	private String ticker;
-	private double price;
+	
+	@Column(name="price")
+	private BigDecimal price;
 	
 	public Stock() {}
 	
-	public Stock(int stockID, String ticker, double price) {
+	public Stock(int stockID, String ticker, BigDecimal price) {
 		super();
 		this.stockID = stockID;
 		this.ticker = ticker;
@@ -45,11 +51,11 @@ public class Stock {
 		this.ticker = ticker;
 	}
 
-	public double getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 

@@ -15,7 +15,7 @@
 		factory-method="createEntityManagerFactory">
 		<constructor-arg name="persistenceUnitName" value="TradingPlatformPU" />
 	</bean>
-	<bean id="userDao" class="com.fdmgroup.tradingplatform.dao.UserDao" destroy-method="closeEMF">
+	<bean id="userDao" class="com.fdmgroup.tradingplatform.dao.UserDao" destroy-method="closeEmf">
 		<constructor-arg name="emf" ref="emfactory" />
 	</bean>
 </beans>
