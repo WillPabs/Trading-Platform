@@ -23,7 +23,6 @@ public abstract class User {
 		this.confirmPassword = confirmPassword;
 	}
 	
-
 	abstract Trade buyShares(int shares);
 	abstract Trade sellShares(int shares);
 	

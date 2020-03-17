@@ -12,14 +12,18 @@
 <body>
 	<h1>User Login</h1>
 	<div class="page-container">
-	<c:if test="${requestScope.errorCheck == 1}">
-		<p>Email or Password doesn't match</p>
-	</c:if>
-		<sf:form action="loginUser">
+		<c:if test="${requestScope.errorCheck == 1}">
+			<p>User does not exist!</p>
+		</c:if>
+		<c:if test="${requestScope.errorCheck == 2}">
+			<p>Email or Password does not match!</p>
+		</c:if>
+		<sf:form action="processLogin" method="post">
 			<table>
 				<tr>
 					<td>Email</td>
-					<td><sf:input path="email" required="required"/></td>
+					<!-- change input so it's not using spring form  -->
+					<td><input type="email" required/></td>
 				</tr>
 				<tr>
 					<td>Password</td>

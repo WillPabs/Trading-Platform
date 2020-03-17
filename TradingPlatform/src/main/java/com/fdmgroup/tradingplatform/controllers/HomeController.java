@@ -1,12 +1,13 @@
 package com.fdmgroup.tradingplatform.controllers;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Session;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -53,35 +54,39 @@ public class HomeController implements ApplicationContextAware{
 		shareholder.setBalance(new BigDecimal(5000.0));
 		UserDao userDao = context.getBean("userDao", UserDao.class);
 		userDao.add(shareholder);
-		
-		
-		return "accountHome";
+		return "loginUser";
 	}
 	
-	@RequestMapping(value = "/loginUser", method=RequestMethod.POST)
-	public String verifyUserLogin(HttpServletRequest req) {
+	@RequestMapping(value = "/processLogin", method=RequestMethod.POST)
+	public String verifyUserLogin(HttpServletRequest req, @ModelAttribute("shareholder")Shareholder user) {
 		int errorCheck = 0;
 		UserDao userDao = context.getBean("userDao", UserDao.class);
 		
-		
-		String email = (String) req.getParameter("email");
-		String password = (String) req.getParameter("password");
+		req.setAttribute("shareholder", user);
+		String email = user.getEmail();
+		String password = user.getPassword();
 		
 		Shareholder userFromDB = userDao.findByEmail(email);
 		
 		if(userFromDB == null) {
 			errorCheck = 1;
+			req.setAttribute("errorCheck", errorCheck);
 			return "loginUser";
 		}
 		
 		String emailCheck = userFromDB.getEmail();
 		String passwordCheck = userFromDB.getPassword();
+		
+		String name = userFromDB.getFirstName();
 			
 		if(email.equals(emailCheck) && password.equals(passwordCheck)) {
 			req.getSession().setAttribute("shareholder", userFromDB);
+			System.out.println(name);
+			//figure out how to display all user info
 			return "accountHome";
 		} else {
-			errorCheck = 1;
+			errorCheck = 2;
+			req.setAttribute("errorCheck", errorCheck);
 			return "loginUser";
 		} 
 	}
