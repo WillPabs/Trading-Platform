@@ -18,16 +18,15 @@
 		<c:if test="${requestScope.errorCheck == 2}">
 			<p>Email or Password does not match!</p>
 		</c:if>
-		<sf:form action="processLogin" method="post">
+		<sf:form action="processLogin" method="post" >
 			<table>
 				<tr>
 					<td>Email</td>
-					<!-- change input so it's not using spring form  -->
-					<td><input type="email" required/></td>
+					<td><input type="email" name="email" required/></td>
 				</tr>
 				<tr>
 					<td>Password</td>
-					<td><sf:input path="password" required="required"/></td>
+					<td><input type="password" name="password" required="required"/></td>
 				</tr>
 				<tr>
 					<td>

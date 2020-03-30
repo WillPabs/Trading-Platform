@@ -18,4 +18,7 @@
 	<bean id="userDao" class="com.fdmgroup.tradingplatform.dao.UserDao" destroy-method="closeEmf">
 		<constructor-arg name="emf" ref="emfactory" />
 	</bean>
+	<bean id="stockDao" class="com.fdmgroup.tradingplatform.dao.StockDao" destroy-method="closeEmf">
+		<constructor-arg name="emf" ref="emfactory" />
+	</bean>
 </beans>

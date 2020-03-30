@@ -1,13 +1,12 @@
 package com.fdmgroup.tradingplatform.controllers;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hibernate.Session;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -17,14 +16,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.fdmgroup.tradingplatform.dao.StockDao;
 import com.fdmgroup.tradingplatform.dao.UserDao;
 import com.fdmgroup.tradingplatform.model.Shareholder;
+import com.fdmgroup.tradingplatform.model.Stock;
 
 @Controller
 public class HomeController implements ApplicationContextAware{
 	
 	private ApplicationContext context;
-	private static Logger logger = LogManager.getLogger();
+	private static Logger log = LogManager.getLogger();
 	
 	public void setApplicationContext(ApplicationContext context) throws BeansException {
 		this.context = context;
@@ -32,7 +33,7 @@ public class HomeController implements ApplicationContextAware{
 	
 	@RequestMapping(value = {"/", "/home"}) 
 	public String goToHomePage(HttpServletRequest request) {
-		logger.info("Entering homepage");
+		log.info("Entering homepage");
 		return "home";
 	}
 	
@@ -58,13 +59,13 @@ public class HomeController implements ApplicationContextAware{
 	}
 	
 	@RequestMapping(value = "/processLogin", method=RequestMethod.POST)
-	public String verifyUserLogin(HttpServletRequest req, @ModelAttribute("shareholder")Shareholder user) {
+	public String verifyUserLogin(HttpServletRequest req) {
 		int errorCheck = 0;
 		UserDao userDao = context.getBean("userDao", UserDao.class);
 		
-		req.setAttribute("shareholder", user);
-		String email = user.getEmail();
-		String password = user.getPassword();
+		
+		String email = req.getParameter("email");
+		String password = req.getParameter("password");
 		
 		Shareholder userFromDB = userDao.findByEmail(email);
 		
@@ -77,12 +78,8 @@ public class HomeController implements ApplicationContextAware{
 		String emailCheck = userFromDB.getEmail();
 		String passwordCheck = userFromDB.getPassword();
 		
-		String name = userFromDB.getFirstName();
-			
 		if(email.equals(emailCheck) && password.equals(passwordCheck)) {
 			req.getSession().setAttribute("shareholder", userFromDB);
-			System.out.println(name);
-			//figure out how to display all user info
 			return "accountHome";
 		} else {
 			errorCheck = 2;
@@ -91,4 +88,32 @@ public class HomeController implements ApplicationContextAware{
 		} 
 	}
 
+	@RequestMapping(value = "/createStock")
+	public String goToCreateStock(HttpServletRequest req) {
+		return "createStock";
+	}
+	
+	@RequestMapping(value = "/registerStock", method=RequestMethod.POST)
+	public String registerStock(HttpServletRequest req, @ModelAttribute("stock") Stock stock) {
+		StockDao stockDao = context.getBean("stockDao",StockDao.class);
+		
+		List<Stock>stocks = stockDao.list();		
+		if(stocks.contains(stock)) {
+			log.error("Stock already exists");
+			return "createStock";
+		}
+		
+		stockDao.add(stock);
+		
+		return "viewStocks";
+	}
+	
+	@RequestMapping(value = "/viewStocks", method=RequestMethod.POST)
+	public String viewStocks(HttpServletRequest req) {
+		StockDao stockDao = context.getBean("stockDao", StockDao.class);
+		List<Stock>stocks = stockDao.list();
+		req.setAttribute("stocks", stocks);
+		
+		return "viewStocks";
+	}
 }

@@ -19,10 +19,14 @@
 			<property name="hibernate.dialect" value="org.hibernate.dialect.OracleDialect" />
 
 			<!-- Connection config -->
+			<!--Login info for fdm connection -->
 			<property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver" />
 			<property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1521:xe" />
-			<property name="hibernate.connection.username" value="trainee1" />
-			<property name="hibernate.connection.password" value="!QAZSE4" />
+<!-- 			<property name="hibernate.connection.username" value="trainee1" /> -->
+<!-- 			<property name="hibernate.connection.password" value="!QAZSE4" /> -->
+			<!--Login info for home connection -->
+			<property name="hibernate.connection.username" value="will" />
+			<property name="hibernate.connection.password" value="pass" />
 
 			<!-- validate, create, create-drop, update -->
 			<property name="hibernate.hbm2ddl.auto" value="validate" />

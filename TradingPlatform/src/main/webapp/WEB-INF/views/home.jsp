@@ -22,6 +22,12 @@
 						<form action="login" method="post">
 							<input class="registerBtn" type="submit" value="Login" />
 						</form>
+						<form action="createStock" method="post">
+							<input class="registerBtn" type="submit" value="Create Stock" />
+						</form>
+						<form action="viewStocks" method="post">
+							<input class="registerBtn" type="submit" value="View Stocks" />
+						</form>
 					</div>
 				</div>
 			</div>
